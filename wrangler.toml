@@ -1,0 +1,11 @@
+name = "api-mybooks"
+main = "src/index.ts"
+compatibility_date = "2024-11-11"
+workers_dev = true
+preview_urls = false
+
+[placement]
+mode = "smart"
+
+[vars]
+NOTION_DATABASE_ID = "1d58f8dca637441ab7c434d65fa1c288"
