@@ -1,7 +1,7 @@
 {
   "name": "api-mybooks",
   "version": "1.0.0",
-  "packageManager": "pnpm@10.4.1",
+  "packageManager": "pnpm@10.7.0",
   "description": "A simple API to fetch my books from Notion Client",
   "author": "Tuan Duc Tran <tuanductran.dev@gmail.com",
   "license": "MIT",
