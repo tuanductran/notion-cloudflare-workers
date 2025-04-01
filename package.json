@@ -7,10 +7,15 @@
   "license": "MIT",
   "scripts": {
     "dev": "wrangler dev",
-    "deploy": "wrangler deploy"
+    "deploy": "wrangler deploy",
+    "lint": "eslint .",
+    "format": "eslint . --fix",
+    "type-check": "tsc --noEmit"
   },
   "devDependencies": {
+    "@antfu/eslint-config": "^4.11.0",
     "@cloudflare/workers-types": "^4.20250327.0",
+    "eslint": "^9.23.0",
     "typescript": "^5.8.2",
     "wrangler": "^4.6.0"
   }
