@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-import { getFromCache, saveToCache } from './cache'
+import { fetchWithMemoryCache } from './memoryCache'
 import { fetchNotionDatabase } from './notion'
 
 /**
@@ -43,31 +43,21 @@ export default {
       }
 
       // Generate cache key based on request URL
-      const cacheKey = new Request(url.toString(), { method: 'GET' })
+      const cacheKey = url.toString()
 
-      // Check if response is already cached
-      const cachedResponse = await getFromCache(cacheKey)
-      if (cachedResponse) {
-        console.log('Serving response from cache')
-        return cachedResponse
-      }
-
-      // Fetch fresh data from Notion API
-      console.log('Fetching fresh data from Notion API')
-      const data = await fetchNotionDatabase(databaseId, notionToken)
+      // Fetch data using memory cache
+      console.log('Fetching data with memory cache')
+      const data = await fetchWithMemoryCache(cacheKey, () =>
+        fetchNotionDatabase(databaseId, notionToken))
 
       // Prepare response
-      const response = new Response(JSON.stringify(data), {
+      return new Response(JSON.stringify(data), {
         status: 200,
         headers: {
           'Content-Type': 'application/json; charset=utf-8',
           'Cache-Control': 's-maxage=300, stale-while-revalidate=60', // Cache for 5 minutes
         },
       })
-
-      // Store response in cache for future requests
-      await saveToCache(cacheKey, response.clone())
-      return response
     }
     catch (error: any) {
       console.error('Error processing request:', error.message || error)

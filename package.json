@@ -1,12 +1,13 @@
 {
   "name": "api-mybooks",
   "version": "1.0.0",
-  "packageManager": "pnpm@10.7.0",
+  "packageManager": "bun@1.2.6",
   "description": "A simple API to fetch my books from Notion Client",
   "author": "Tuan Duc Tran <tuanductran.dev@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "dev": "wrangler dev",
+    "build": "esbuild src/index.ts --bundle --minify --platform=neutral --outfile=dist/worker.js",
+    "dev": "wrangler dev ./src/index.ts",
     "deploy": "wrangler deploy",
     "lint": "eslint .",
     "format": "eslint . --fix",
@@ -15,6 +16,7 @@
   "devDependencies": {
     "@antfu/eslint-config": "^4.11.0",
     "@cloudflare/workers-types": "^4.20250327.0",
+    "esbuild": "^0.25.2",
     "eslint": "^9.23.0",
     "typescript": "^5.8.2",
     "wrangler": "^4.6.0"
