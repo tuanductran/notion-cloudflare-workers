@@ -80,5 +80,3 @@ bun run deploy
 ## License
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
-
-**Author:** Tuan Duc Tran ([tuanductran.dev@gmail.com](mailto:tuanductran.dev@gmail.com))
