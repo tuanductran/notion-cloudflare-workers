@@ -2,7 +2,7 @@
 
 ## Supported Versions
 
-We actively maintain the latest version of `api-mybooks`. The following table outlines the support policy:
+We actively maintain the latest version of **Notion Cloudflare Workers**. The following table outlines the support policy:
 
 | Version | Supported |
 |---------|-----------|
