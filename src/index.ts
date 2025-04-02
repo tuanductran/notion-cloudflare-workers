@@ -1,5 +1,4 @@
-/* eslint-disable no-console */
-import { fetchWithMemoryCache } from './memoryCache'
+import { fetchWithCloudflareCache } from './memoryCache'
 import { fetchNotionDatabase } from './notion'
 
 /**
@@ -43,11 +42,9 @@ export default {
       }
 
       // Generate cache key based on request URL
-      const cacheKey = url.toString()
+      const cacheKey = decodeURIComponent(url.toString())
 
-      // Fetch data using memory cache
-      console.log('Fetching data with memory cache')
-      const data = await fetchWithMemoryCache(cacheKey, () =>
+      const data = await fetchWithCloudflareCache(cacheKey, () =>
         fetchNotionDatabase(databaseId, notionToken))
 
       // Prepare response
@@ -55,7 +52,7 @@ export default {
         status: 200,
         headers: {
           'Content-Type': 'application/json; charset=utf-8',
-          'Cache-Control': 's-maxage=300, stale-while-revalidate=60', // Cache for 5 minutes
+          'Cache-Control': 's-maxage=300, stale-while-revalidate=60',
         },
       })
     }

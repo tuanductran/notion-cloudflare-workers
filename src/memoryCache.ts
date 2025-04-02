@@ -1,18 +1,19 @@
-const memoryCache = new Map<string, { data: any, expiresAt: number }>()
-
-export async function fetchWithMemoryCache(
+export async function fetchWithCloudflareCache(
   key: string,
   fetchFunction: () => Promise<any>,
   ttl = 300,
 ): Promise<any> {
-  const cached = memoryCache.get(key)
-  if (cached && cached.expiresAt > Date.now()) {
-    // eslint-disable-next-line no-console
-    console.log('Serving from in-memory cache')
-    return cached.data
+  const cached = await caches.default.match(new Request(key))
+
+  if (cached) {
+    return cached.clone().text()
   }
 
   const data = await fetchFunction()
-  memoryCache.set(key, { data, expiresAt: Date.now() + ttl * 1000 })
+
+  const response = new Response(data)
+  response.headers.set('Cache-Control', `s-maxage=${ttl}`)
+  await caches.default.put(new Request(key), response)
+
   return data
 }
