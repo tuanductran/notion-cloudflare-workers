@@ -6,19 +6,23 @@
   "author": "Tuan Duc Tran <tuanductran.dev@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "build": "esbuild src/index.ts --bundle --minify --platform=neutral --outfile=dist/worker.js",
+    "build": "bun build src/index.ts --bundle --minify --outdir dist",
     "dev": "wrangler dev ./src/index.ts",
-    "deploy": "wrangler deploy ./dist/worker.js",
+    "deploy": "wrangler deploy ./dist/index.js",
     "lint": "eslint .",
     "format": "eslint . --fix",
+    "preinstall": "npx only-allow bun",
     "type-check": "tsc --noEmit"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^4.11.0",
     "@cloudflare/workers-types": "^4.20250327.0",
-    "esbuild": "^0.25.2",
+    "@types/bun": "^1.2.8",
     "eslint": "^9.23.0",
     "typescript": "^5.8.2",
     "wrangler": "^4.6.0"
+  },
+  "overrides": {
+    "esbuild": "^0.25.2"
   }
 }

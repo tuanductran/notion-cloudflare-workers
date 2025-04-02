@@ -1,14 +1,25 @@
 import type { NotionAPIResponse, NotionPage } from './types'
+import { compareAsc, compareDesc, formatDate } from './date'
+
+const CompareFunctionLookup: Record<
+  'asc' | 'desc',
+  (a: Date, b: Date) => number
+> = {
+  asc: compareAsc,
+  desc: compareDesc,
+}
 
 /**
  * Fetch all pages from a Notion database with pagination.
  * @param databaseId - The ID of the Notion database.
  * @param token - The Notion API token.
+ * @param sortOrder - The sort order of the pages.
  * @returns A formatted array of Notion pages.
  */
 export async function fetchNotionDatabase(
   databaseId: string,
   token: string,
+  sortOrder: 'asc' | 'desc' = 'desc',
 ): Promise<NotionPage[]> {
   try {
     let hasMore = true
@@ -48,8 +59,8 @@ export async function fetchNotionDatabase(
       const formattedResults: NotionPage[] = data.results.map(page => ({
         id: page.id,
         title: page.properties?.Title?.title?.[0]?.plain_text || 'Untitled',
-        createdAt: page.created_time,
-        updatedAt: page.last_edited_time,
+        createdAt: formatDate(page.created_time),
+        updatedAt: formatDate(page.last_edited_time),
         public_url: page.public_url,
         status: page.properties?.Status?.formula?.string || 'Unknown',
       }))
@@ -58,10 +69,12 @@ export async function fetchNotionDatabase(
     }
 
     // Sort results by creation date (newest first)
-    return allResults.sort(
-      (a, b) =>
-        new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime(),
-    )
+    return allResults.sort((a, b) => {
+      return CompareFunctionLookup[sortOrder](
+        new Date(a.createdAt),
+        new Date(b.createdAt),
+      )
+    })
   }
   catch (error) {
     console.error('Error fetching Notion database:', error)
