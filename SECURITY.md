@@ -29,5 +29,3 @@ To ensure security while using `api-mybooks`, consider the following:
 ## Responsible Disclosure
 
 We appreciate responsible disclosure of security issues and will credit researchers who help improve the security of this project.
-
-**Author:** Tuan Duc Tran ([tuanductran.dev@gmail.com](mailto:tuanductran.dev@gmail.com))
