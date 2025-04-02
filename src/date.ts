@@ -9,7 +9,7 @@ function compareAsc(dateA: Date, dateB: Date): number {
 }
 
 /**
- * Compare two dates in ascending order.
+ * Compare two dates in descending order.
  * @param dateA - The first date.
  * @param dateB - The second date.
  * @returns A number indicating the comparison result.
