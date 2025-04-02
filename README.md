@@ -1,4 +1,4 @@
-# Notion CloudFlare Worker
+# Notion Cloudflare Worker
 
 A simple API to fetch books from Notion Client.
 
@@ -15,7 +15,7 @@ A simple API to fetch books from Notion Client.
 
 ## Overview
 
-**Notion CloudFlare Worker** is a lightweight API designed to fetch book records from Notion Client. It is built using Cloudflare Workers and utilizes `Bun` as the package manager for better performance and efficiency.
+**Notion Cloudflare Worker** is a lightweight API designed to fetch book records from Notion Client. It is built using Cloudflare Workers and utilizes `Bun` as the package manager for better performance and efficiency.
 
 ## Features
 
