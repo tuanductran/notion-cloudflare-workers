@@ -1,5 +1,5 @@
 {
-  "name": "api-mybooks",
+  "name": "notion-cloudflare-workers",
   "version": "1.0.0",
   "packageManager": "bun@1.2.6",
   "description": "A simple API to fetch my books from Notion Client",
