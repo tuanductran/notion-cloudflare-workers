@@ -1,4 +1,4 @@
-# api-mybooks
+# Notion CloudFlare Worker
 
 A simple API to fetch books from Notion Client.
 
@@ -15,7 +15,7 @@ A simple API to fetch books from Notion Client.
 
 ## Overview
 
-`api-mybooks` is a lightweight API designed to fetch book records from Notion Client. It is built using Cloudflare Workers and utilizes `Bun` as the package manager for better performance and efficiency.
+**Notion CloudFlare Worker** is a lightweight API designed to fetch book records from Notion Client. It is built using Cloudflare Workers and utilizes `Bun` as the package manager for better performance and efficiency.
 
 ## Features
 
