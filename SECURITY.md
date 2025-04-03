@@ -5,7 +5,7 @@
 We actively maintain the latest version of **Notion Cloudflare Workers**. The following table outlines the support policy:
 
 | Version | Supported |
-|---------|-----------|
+| ------- | --------- |
 | 1.0.0   | ✅ Yes    |
 
 ## Reporting a Vulnerability

@@ -1,5 +1,5 @@
-import { fetchWithCloudflareCache } from './memoryCache'
-import { fetchNotionDatabase } from './notion'
+import { fetchNotionDatabase } from './api/notion'
+import { fetchWithCloudflareCache } from './utils/memoryCache'
 
 /**
  * Cloudflare Worker entry point.

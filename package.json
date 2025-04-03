@@ -1,26 +1,38 @@
 {
   "name": "notion-cloudflare-workers",
   "version": "1.0.0",
-  "packageManager": "bun@1.2.6",
+  "packageManager": "pnpm@10.4.1",
   "description": "A simple API to fetch my books from Notion Client",
   "author": "Tuan Duc Tran <tuanductran.dev@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "build": "bun build src/index.ts --bundle --minify --outdir dist",
-    "dev": "wrangler dev ./src/index.ts",
-    "deploy": "wrangler deploy ./dist/index.js",
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "wrangler:dev": "wrangler dev",
+    "deploy": "wrangler deploy ./dist/index.mjs",
     "lint": "eslint .",
     "format": "eslint . --fix",
-    "preinstall": "npx only-allow bun",
-    "type-check": "tsc --noEmit"
+    "preinstall": "npx only-allow pnpm",
+    "type-check": "tsc --noEmit",
+    "watch": "concurrently \"pnpm dev\" \"pnpm wrangler:dev\""
   },
   "devDependencies": {
     "@antfu/eslint-config": "^4.11.0",
     "@cloudflare/workers-types": "^4.20250327.0",
-    "@types/bun": "^1.2.8",
+    "concurrently": "^9.1.2",
     "eslint": "^9.23.0",
+    "eslint-plugin-command": "^3.2.0",
+    "eslint-plugin-format": "^1.0.1",
+    "tsup": "^8.4.0",
     "typescript": "^5.8.2",
     "wrangler": "^4.6.0"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "esbuild",
+      "sharp",
+      "workerd"
+    ]
   },
   "overrides": {
     "esbuild": "^0.25.2"

@@ -15,21 +15,21 @@ A simple API to fetch books from Notion Client.
 
 ## Overview
 
-**Notion Cloudflare Workers** is a lightweight API designed to fetch book records from Notion Client. It is built using Cloudflare Workers and utilizes `Bun` as the package manager for better performance and efficiency.
+**Notion Cloudflare Workers** is a lightweight API designed to fetch book records from Notion Client. It is built using Cloudflare Workers and utilizes `PNPM` as the package manager for better performance and efficiency.
 
 ## Features
 
 - Fetch book data from Notion.
 - Built with TypeScript for type safety.
-- Uses `Bun` for fast dependency management.
+- Uses `PNPM` for fast dependency management.
 - Cloudflare Workers integration for serverless deployment.
 
 ## Installation
 
-Ensure you have [Bun](https://bun.sh/) installed on your system. Then, clone the repository and install dependencies:
+Ensure you have [PNPM](https://pnpm.io/) installed on your system. Then, clone the repository and install dependencies:
 
 ```sh
-bun install
+pnpm install
 ```
 
 ## Usage
@@ -39,7 +39,7 @@ bun install
 To start the development server, run:
 
 ```sh
-bun run dev
+pnpm watch
 ```
 
 ### Linting and Formatting
@@ -47,23 +47,25 @@ bun run dev
 To check and fix linting issues:
 
 ```sh
-bun run lint
+pnpm lint
 ```
 
 To format the code:
 
 ```sh
-bun run format
+pnpm format
 ```
 
 ## Scripts
 
-- `bun run build` - Build the project using `bun`.
-- `bun run dev` - Start the development server with `wrangler`.
-- `bun run deploy` - Deploy the API to Cloudflare Workers.
-- `bun run lint` - Run ESLint to check code quality.
-- `bun run format` - Format the code using ESLint.
-- `bun run type-check` - Perform TypeScript type checking.
+- `pnpm build` - Build the project using `tsup`.
+- `pnpm dev` - Start the development server with `tsup`.
+- `pnpm wrangler:dev` - Start the development server with `wrangler`.
+- `pnpm deploy` - Deploy the API to Cloudflare Workers.
+- `pnpm lint` - Run ESLint to check code quality.
+- `pnpm format` - Format the code using ESLint.
+- `pnpm type-check` - Perform TypeScript type checking.
+- `pnpm watch` - Start the development server with `tsup` and `wrangler`.
 
 ## Configuration
 
@@ -74,7 +76,7 @@ Before using the API, ensure that your Notion API credentials are properly set u
 Deploy the API using Cloudflare Workers with the following command:
 
 ```sh
-bun run deploy
+pnpm deploy
 ```
 
 ## License
