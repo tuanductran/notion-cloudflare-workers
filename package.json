@@ -18,14 +18,14 @@
   },
   "devDependencies": {
     "@antfu/eslint-config": "^4.11.0",
-    "@cloudflare/workers-types": "^4.20250327.0",
+    "@cloudflare/workers-types": "^4.20250404.0",
     "concurrently": "^9.1.2",
     "eslint": "^9.23.0",
     "eslint-plugin-command": "^3.2.0",
     "eslint-plugin-format": "^1.0.1",
     "tsup": "^8.4.0",
     "typescript": "^5.8.2",
-    "wrangler": "^4.6.0"
+    "wrangler": "^4.7.1"
   },
   "pnpm": {
     "onlyBuiltDependencies": [
