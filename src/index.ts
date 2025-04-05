@@ -1,5 +1,4 @@
 import { fetchNotionDatabase } from './api/notion'
-import { fetchWithCloudflareCache } from './utils/memoryCache'
 
 /**
  * Cloudflare Worker entry point.
@@ -13,42 +12,34 @@ export default {
     request: Request,
     env: Record<string, string>,
   ): Promise<Response> {
+    const { NOTION_DATABASE_ID, NOTION_TOKEN } = env
+
+    // Extract and validate credentials
+    if (!NOTION_TOKEN || !/^[\w-]+$/.test(NOTION_TOKEN)) {
+      return new Response(
+        JSON.stringify({ error: 'Invalid or missing Notion API token' }),
+        { status: 400 },
+      )
+    }
+
+    if (!NOTION_DATABASE_ID || !/^[a-f0-9]{32}$/i.test(NOTION_DATABASE_ID)) {
+      return new Response(
+        JSON.stringify({ error: 'Invalid or missing Notion Database ID' }),
+        { status: 400 },
+      )
+    }
+
+    // Ignore favicon.ico requests
+    const url = new URL(request.url)
+    if (url.pathname === '/favicon.ico') {
+      return new Response(null, { status: 204 })
+    }
+
     try {
-      const url = new URL(request.url)
+      const data = await fetchNotionDatabase(NOTION_DATABASE_ID, NOTION_TOKEN)
 
-      // Ignore favicon.ico requests
-      if (url.pathname === '/favicon.ico') {
-        return new Response(null, { status: 204 })
-      }
-
-      // Extract Notion credentials from environment variables
-      const databaseId = env.NOTION_DATABASE_ID
-      const notionToken = env.NOTION_TOKEN
-
-      // Validate Notion API token
-      if (!notionToken || !/^[\w-]+$/.test(notionToken)) {
-        return new Response(
-          JSON.stringify({ error: 'Invalid or missing Notion API token' }),
-          { status: 400 },
-        )
-      }
-
-      // Validate Notion Database ID
-      if (!databaseId || !/^[a-f0-9]{32}$/i.test(databaseId)) {
-        return new Response(
-          JSON.stringify({ error: 'Invalid or missing Notion Database ID' }),
-          { status: 400 },
-        )
-      }
-
-      // Generate cache key based on request URL
-      const cacheKey = decodeURIComponent(url.toString())
-
-      const data = await fetchWithCloudflareCache(cacheKey, () =>
-        fetchNotionDatabase(databaseId, notionToken))
-
-      // Prepare response
-      return new Response(JSON.stringify(data), {
+      // Prepare and send the response
+      return new Response(JSON.stringify(data, null, 2), {
         status: 200,
         headers: {
           'Content-Type': 'application/json; charset=utf-8',

@@ -1,6 +1,5 @@
 import type { NotionAPIResponse, NotionPage } from '../types'
 import { CompareFunctionLookup } from '../utils/compare'
-import { formatDate } from '../utils/formatDate'
 
 /**
  * Fetch all pages from a Notion database with pagination.
@@ -15,12 +14,13 @@ export async function fetchNotionDatabase(
   sortOrder: 'asc' | 'desc' = 'desc',
 ): Promise<NotionPage[]> {
   try {
+    const allResults: NotionPage[] = []
     let hasMore = true
     let nextCursor: string | null = null
-    const allResults: NotionPage[] = []
 
+    // Paginate through Notion database
     while (hasMore) {
-      const requestBody: Record<string, any> = {
+      const requestBody = {
         page_size: 100,
         ...(nextCursor && { start_cursor: nextCursor }),
       }
@@ -45,29 +45,30 @@ export async function fetchNotionDatabase(
       }
 
       const data: NotionAPIResponse = await response.json()
+      allResults.push(
+        ...data.results.map(page => ({
+          id: page.id,
+          title: page.properties?.Title?.title?.[0]?.plain_text || 'Untitled',
+          total_pages: page.properties?.['Total pages']?.number || 0,
+          current_page: page.properties?.['Current page']?.number || 0,
+          created_at: page.created_time,
+          updated_at: page.last_edited_time,
+          public_url: page.public_url,
+          status: page.properties?.Status?.formula?.string || 'Unknown',
+        })),
+      )
+
       hasMore = data.has_more
       nextCursor = data.next_cursor || null
-
-      // Format Notion pages
-      const formattedResults: NotionPage[] = data.results.map(page => ({
-        id: page.id,
-        title: page.properties?.Title?.title?.[0]?.plain_text || 'Untitled',
-        createdAt: formatDate(page.created_time),
-        updatedAt: formatDate(page.last_edited_time),
-        public_url: page.public_url,
-        status: page.properties?.Status?.formula?.string || 'Unknown',
-      }))
-
-      allResults.push(...formattedResults)
     }
 
     // Sort results by creation date (newest first)
-    return allResults.sort((a, b) => {
-      return CompareFunctionLookup[sortOrder](
-        new Date(a.createdAt),
-        new Date(b.createdAt),
-      )
-    })
+    return allResults.sort((a, b) =>
+      CompareFunctionLookup[sortOrder](
+        new Date(a.created_at),
+        new Date(b.created_at),
+      ),
+    )
   }
   catch (error) {
     console.error('Error fetching Notion database:', error)

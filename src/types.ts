@@ -2,8 +2,10 @@
 export interface NotionPage {
   id: string
   title: string
-  createdAt: string
-  updatedAt: string
+  total_pages: number
+  current_page: number
+  created_at: string
+  updated_at: string
   public_url: string
   status: string
 }
