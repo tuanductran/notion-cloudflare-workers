@@ -6,8 +6,9 @@ export interface NotionPage {
   current_page: number
   created_at: string
   updated_at: string
-  public_url: string
+  page_url: string
   status: string
+  time_reading: string
 }
 
 // Represents a Notion API response object

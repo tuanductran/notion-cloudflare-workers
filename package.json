@@ -11,8 +11,8 @@
   "scripts": {
     "build": "tsup",
     "dev": "tsup --watch",
-    "wrangler:dev": "wrangler dev",
-    "deploy": "wrangler deploy ./dist/index.mjs",
+    "wrangler:dev": "wrangler dev ./dist/index.mjs",
+    "wrangler:deploy": "wrangler deploy ./dist/index.mjs",
     "lint": "eslint .",
     "format": "eslint . --fix",
     "preinstall": "npx only-allow pnpm",

@@ -48,13 +48,15 @@ export async function fetchNotionDatabase(
       allResults.push(
         ...data.results.map(page => ({
           id: page.id,
-          title: page.properties?.Title?.title?.[0]?.plain_text || 'Untitled',
-          total_pages: page.properties?.['Total pages']?.number || 0,
-          current_page: page.properties?.['Current page']?.number || 0,
+          title: page.properties?.Title?.title?.[0]?.plain_text ?? 'Untitled',
+          total_pages: page.properties?.['Total pages']?.number ?? 0,
+          current_page: page.properties?.['Current page']?.number ?? 0,
           created_at: page.created_time,
           updated_at: page.last_edited_time,
-          public_url: page.public_url,
-          status: page.properties?.Status?.formula?.string || 'Unknown',
+          page_url: page.url,
+          status: page.properties?.Status?.formula?.string ?? 'Unknown',
+          time_reading:
+            page.properties?.['Time reading']?.formula?.string ?? 'Unknown',
         })),
       )
 
