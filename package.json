@@ -21,7 +21,7 @@
   },
   "devDependencies": {
     "@antfu/eslint-config": "^4.11.0",
-    "@cloudflare/workers-types": "^4.20250405.0",
+    "@cloudflare/workers-types": "^4.20250421.0",
     "concurrently": "^9.1.2",
     "eslint": "^9.24.0",
     "eslint-plugin-command": "^3.2.0",
