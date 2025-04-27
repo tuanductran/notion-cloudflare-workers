@@ -1,7 +1,7 @@
 {
   "name": "notion-cloudflare-workers",
   "version": "1.0.0",
-  "packageManager": "pnpm@10.8.1",
+  "packageManager": "pnpm@10.9.0",
   "description": "A simple API to fetch my books from Notion Client",
   "author": "Tuan Duc Tran <tuanductran.dev@gmail.com>",
   "license": "MIT",
@@ -20,20 +20,21 @@
     "watch": "concurrently \"pnpm dev\" \"pnpm wrangler:dev\""
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^4.11.0",
-    "@cloudflare/workers-types": "^4.20250405.0",
+    "@antfu/eslint-config": "^4.12.0",
+    "@cloudflare/workers-types": "^4.20250427.0",
     "concurrently": "^9.1.2",
-    "eslint": "^9.24.0",
+    "eslint": "^9.25.1",
     "eslint-plugin-command": "^3.2.0",
     "eslint-plugin-format": "^1.0.1",
     "tsup": "^8.4.0",
     "typescript": "^5.8.3",
-    "wrangler": "^4.8.0"
+    "wrangler": "^4.13.2"
   },
   "pnpm": {
     "onlyBuiltDependencies": [
       "esbuild",
       "sharp",
+      "unrs-resolver",
       "workerd"
     ]
   },
