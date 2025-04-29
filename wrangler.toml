@@ -9,4 +9,4 @@ mode = "smart"
 
 [vars]
 NOTION_DATABASE_ID = "1d58f8dca637441ab7c434d65fa1c288"
-PNPM_VERSION = "10.8.0"
+PNPM_VERSION = "10.10.0"
