@@ -11,8 +11,8 @@
   "scripts": {
     "build": "tsup",
     "dev": "tsup --watch",
-    "wrangler:dev": "wrangler dev ./dist/index.mjs",
-    "wrangler:deploy": "wrangler deploy ./dist/index.mjs",
+    "wrangler:dev": "wrangler dev ./dist/index.js",
+    "wrangler:deploy": "wrangler deploy ./dist/index.js",
     "lint": "eslint .",
     "format": "eslint . --fix",
     "preinstall": "npx only-allow pnpm",
@@ -21,14 +21,15 @@
   },
   "devDependencies": {
     "@antfu/eslint-config": "^4.12.0",
-    "@cloudflare/workers-types": "^4.20250427.0",
+    "@cloudflare/workers-types": "^4.20250430.0",
     "concurrently": "^9.1.2",
     "eslint": "^9.25.1",
     "eslint-plugin-command": "^3.2.0",
     "eslint-plugin-format": "^1.0.1",
     "tsup": "^8.4.0",
     "typescript": "^5.8.3",
-    "wrangler": "^4.13.2"
+    "wrangler": "^4.14.0",
+    "zod": "^3.24.3"
   },
   "pnpm": {
     "onlyBuiltDependencies": [
