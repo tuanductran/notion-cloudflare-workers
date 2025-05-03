@@ -46,12 +46,8 @@ const NotionAPIResultSchema = /* @__PURE__ */ (() => z.strictObject({
       number: z.number(),
     }),
     'Status': z.strictObject({
-      rollup: z.strictObject({
-        array: z.array(z.strictObject({
-          formula: z.strictObject({
-            string: z.string(),
-          }),
-        })),
+      formula: z.strictObject({
+        string: z.string(),
       }),
     }),
     'Time reading': z.strictObject({
