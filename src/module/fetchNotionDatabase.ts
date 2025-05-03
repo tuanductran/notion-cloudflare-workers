@@ -58,7 +58,7 @@ export async function fetchNotionDatabase(
             description: page.properties?.Description?.rich_text?.[0]?.plain_text ?? 'No description',
             id: page.id,
             page_url: page.url,
-            status: page.properties?.Status?.rollup?.array?.[0]?.formula?.string ?? 'Unknown',
+            status: page.properties?.Status?.formula?.string ?? 'Unknown',
             time_reading: page.properties?.['Time reading']?.formula?.string ?? 'Unknown',
             title: page.properties?.Title?.title?.[0]?.plain_text ?? 'Untitled',
             total_pages: page.properties?.['Total pages']?.number ?? 0,
