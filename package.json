@@ -28,7 +28,7 @@
     "eslint-plugin-format": "^1.0.1",
     "tsup": "^8.4.0",
     "typescript": "^5.8.3",
-    "wrangler": "^4.14.0",
+    "wrangler": "^4.14.4",
     "zod": "^3.24.3"
   },
   "pnpm": {
