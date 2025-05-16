@@ -1,7 +1,7 @@
 {
   "name": "notion-cloudflare-workers",
   "version": "1.0.0",
-  "packageManager": "pnpm@10.10.0",
+  "packageManager": "pnpm@10.11.0",
   "description": "A simple API to fetch my books from Notion Client",
   "author": "Tuan Duc Tran <tuanductran.dev@gmail.com>",
   "license": "MIT",
