@@ -20,16 +20,17 @@
     "watch": "concurrently \"pnpm dev\" \"pnpm wrangler:dev\""
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^4.13.1",
-    "@cloudflare/workers-types": "^4.20250520.0",
+    "@antfu/eslint-config": "^4.13.2",
+    "@cloudflare/workers-types": "^4.20250523.0",
     "concurrently": "^9.1.2",
     "eslint": "^9.27.0",
     "eslint-plugin-command": "^3.2.0",
     "eslint-plugin-format": "^1.0.1",
+    "hono": "^4.7.10",
     "tsup": "^8.5.0",
     "typescript": "^5.8.3",
-    "wrangler": "^4.16.0",
-    "zod": "^3.25.7"
+    "wrangler": "^4.16.1",
+    "zod": "^3.25.23"
   },
   "pnpm": {
     "onlyBuiltDependencies": [

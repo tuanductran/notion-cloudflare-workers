@@ -1,9 +1,12 @@
-import type { z } from 'zod'
+import type { z } from 'zod/v4-mini'
 import type { NotionAuthorSchema } from '../schema'
 
 type NotionAuthor = z.infer<typeof NotionAuthorSchema>
 
-export async function fetchAuthorDetails(authorId: string, token: string): Promise<string> {
+export async function fetchAuthorDetails(
+  authorId: string,
+  token: string,
+): Promise<string> {
   const endpoint = `https://api.notion.com/v1/pages/${authorId}`
   const headers = {
     'Authorization': `Bearer ${token}`,
@@ -11,20 +14,22 @@ export async function fetchAuthorDetails(authorId: string, token: string): Promi
   }
 
   try {
-    const response = await fetch(endpoint, {
-      method: 'GET',
-      headers,
-    })
+    const res = await fetch(endpoint, { method: 'GET', headers })
 
-    if (!response.ok) {
-      throw new Error(`Failed to fetch author details for ${authorId}: ${response.statusText}`)
+    if (!res.ok) {
+      console.warn(
+        `[fetchAuthorDetails] ${authorId} - HTTP ${res.status} ${res.statusText}`,
+      )
+      return 'Unknown Author'
     }
 
-    const data: NotionAuthor = await response.json()
-    return data.properties?.Title?.title?.[0]?.plain_text ?? 'Unknown Author'
+    const data: NotionAuthor = await res.json()
+    const title = data?.properties?.Title?.title?.[0]?.plain_text?.trim()
+
+    return title || 'Unknown Author'
   }
-  catch (error) {
-    console.error(error)
+  catch (err) {
+    console.warn(`[fetchAuthorDetails] Error fetching ${authorId}:`, err)
     return 'Unknown Author'
   }
 }
