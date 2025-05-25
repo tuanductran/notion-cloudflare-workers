@@ -18,7 +18,7 @@ app.get('/', async (c) => {
   try {
     const pages = await fetchNotionDatabase(NOTION_DATABASE_ID, NOTION_TOKEN)
     return c.json(pages, 200, {
-      'Content-Type', 'application/json; charset=utf-8',
+      'Content-Type': 'application/json; charset=utf-8',
       'Cache-Control': 's-maxage=300, stale-while-revalidate=60',
       'Access-Control-Allow-Origin': '*',
     })
