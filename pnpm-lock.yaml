@@ -40,7 +40,7 @@ importers:
         version: 4.16.1(@cloudflare/workers-types@4.20250523.0)
       zod:
         specifier: ^3.25.23
-        version: 3.25.23
+        version: 3.25.28
 
   apps/notion-books:
     devDependencies:
@@ -2528,8 +2528,8 @@ packages:
   zod@3.22.3:
     resolution: {integrity: sha512-EjIevzuJRiRPbVH4mGc8nApb/lVLKVpmUhAaR5R5doKGfAnGJ6Gr3CViAVjP+4FWSxCsybeWQdcgCtbX+7oZug==}
 
-  zod@3.25.23:
-    resolution: {integrity: sha512-Od2bdMosahjSrSgJtakrwjMDb1zM1A3VIHCPGveZt/3/wlrTWBya2lmEh2OYe4OIu8mPTmmr0gnLHIWQXdtWBg==}
+  zod@3.25.28:
+    resolution: {integrity: sha512-/nt/67WYKnr5by3YS7LroZJbtcCBurDKKPBPWWzaxvVCGuG/NOsiKkrjoOhI8mJ+SQUXEbUzeB3S+6XDUEEj7Q==}
 
   zod@3.25.7:
     resolution: {integrity: sha512-YGdT1cVRmKkOg6Sq7vY7IkxdphySKnXhaUmFI4r4FcuFVNgpCb9tZfNwXbT6BPjD5oz0nubFsoo9pIqKrDcCvg==}
@@ -5152,7 +5152,7 @@ snapshots:
 
   zod@3.22.3: {}
 
-  zod@3.25.23: {}
+  zod@3.25.28: {}
 
   zod@3.25.7: {}
 
