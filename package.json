@@ -23,7 +23,7 @@
     "@antfu/eslint-config": "^4.13.2",
     "@cloudflare/workers-types": "^4.20250523.0",
     "concurrently": "^9.1.2",
-    "eslint": "^9.27.0",
+    "eslint": "^9.28.0",
     "eslint-plugin-command": "^3.2.0",
     "eslint-plugin-format": "^1.0.1",
     "hono": "^4.7.10",
